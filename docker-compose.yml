@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-order-service
+    environment:
+      MYSQL_ROOT_PASSWORD: mysql
+      MYSQL_DATABASE: order_service
+      MYSQL_USER: root
+      MYSQL_PASSWORD: mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - my-network
+
+#  order-service:
+#    image: your-order-service-image
+#    container_name: order-service
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/order_service
+#      SPRING_DATASOURCE_USERNAME: root
+#      SPRING_DATASOURCE_PASSWORD: mysql
+#      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+#    ports:
+#      - "8081:8081"
+#    depends_on:
+#      - mysql
+#    networks:
+#      - my-network
+#
+#  inventory-service:
+#    image: your-inventory-service-image
+#    container_name: inventory-service
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/inventory_service
+#      SPRING_DATASOURCE_USERNAME: root
+#      SPRING_DATASOURCE_PASSWORD: mysql
+#      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+#    ports:
+#      - "8082:8082"
+#    depends_on:
+#      - mysql
+#    networks:
+#      - my-network
+
+networks:
+  my-network:
+    driver: bridge
